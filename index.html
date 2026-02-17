@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WOLFLIX Homework: Superman & Lois - Simple Past</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, #050505 0%, #1a0505 50%, #050505 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .mobile-container {
+            max-width: 420px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #050505 0%, #0a0505 100%);
+        }
+        
+        .glass-mobile {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            margin: 12px;
+            padding: 20px;
+        }
+        
+        .netflix-red {
+            background: linear-gradient(135deg, #E50914 0%, #B20710 100%);
+        }
+        
+        .mission-card {
+            background: rgba(229, 9, 20, 0.1);
+            border: 2px solid rgba(229, 9, 20, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 12px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .mission-card:hover {
+            border-color: #E50914;
+            box-shadow: 0 8px 25px rgba(229, 9, 20, 0.2);
+        }
+        
+        .complete-btn {
+            background: linear-gradient(45deg, #E50914, #B20710);
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .complete-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(229, 9, 20, 0.4);
+        }
+        
+        .complete-btn.completed {
+            background: linear-gradient(45deg, #22c55e, #16a34a);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #E50914, #B20710);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .voice-recorder {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed rgba(229, 9, 20, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin: 16px 0;
+        }
+        
+        .emoji-large {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Header -->
+        <div class="glass-mobile text-center">
+            <h1 class="text-2xl font-bold font-montserrat mb-2">WOLF<span class="text-red-500">FLIX</span></h1>
+            <p class="text-sm text-gray-400 font-space-mono">HOMEWORK MISSION</p>
+            <div class="mt-4">
+                <h2 class="text-xl font-semibold">Superman & Lois</h2>
+                <div class="flex justify-center gap-2 mt-2">
+                    <span class="px-3 py-1 bg-red-600 rounded-full text-xs">A1</span>
+                    <span class="px-3 py-1 bg-gray-700 rounded-full text-xs">SIMPLE PAST</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Overview -->
+        <div class="glass-mobile">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">Your Progress</h3>
+                <span class="text-red-500 font-bold" id="completedMissions">0/7</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p class="text-sm text-gray-400 mt-2 text-center">Complete all missions to unlock your certificate!</p>
+        </div>
+
+        <!-- Mission 1: Voice Recording -->
+        <div class="mission-card" id="mission1">
+            <div class="emoji-large text-center">🎤</div>
+            <h3 class="text-lg font-semibold mb-3 text-red-400">Mission 1: Your Origin Story</h3>
+            <p class="mb-4">Record a 1-minute voice message telling your origin story using Simple Past.</p>
+            <div class="voice-recorder">
+                <p class="text-sm text-gray-300 mb-3">🎙️ Record your story:</p>
+                <p class="text-xs text-gray-400">"I was born in... I grew up... My family was... I moved to..."</p>
+            </div>
+            <button class="complete-btn" onclick="completeMission(1)">Complete Mission 1</button>
+        </div>
+
+        <!-- Mission 2: Memory Journal -->
+        <div class="mission-card" id="mission2">
+            <div class="emoji-large text-center">📝</div>
+            <h3 class="text-lg font-semibold mb-3 text-red-400">Mission 2: Vivid Memory</h3>
+            <p class="mb-4">Write about your most vivid childhood memory (5 sentences minimum).</p>
+            <textarea class="w-full h-24 bg-black/50 border border-gray-600 rounded-lg p-3 text-white resize-none" 
+                      placeholder="I remember when I was... It happened... I felt... My family..."></textarea>
+            <button class="complete-btn" onclick="completeMission(2)">Complete Mission 2</button>
+        </div>
+
+        <!-- Mission 3: Family Questions -->
+        <div class="mission-card" id="mission3">
+            <div class="emoji-large text-center">👨‍👩‍👧‍👦</div>
+            <h3 class="text-lg font-semibold mb-3 text-red-400">Mission 3: Family Interview</h3>
+            <p class="mb-4">Ask a family member these questions and record their answers:</p>
+            <div class="space-y-2 text-sm">
+                <p>• "What was your childhood like?"</p>
+                <p>• "Where did you grow up?"</p>
+                <p>• "What was your favorite memory?"</p>
+            </div>
+            <button class="complete-btn" onclick="completeMission(3)">Complete Mission 3</button>
+        </div>
+
+        <!-- Mission 4: Superman Quiz -->
+        <div class="mission-card" id="mission4">
+            <div class="emoji-large text-center">🦸‍♂️</div>
+            <h3 class="text-lg font-semibold mb-3 text-red-400">Mission 4: Superman Knowledge</h3>
+            <p class="mb-4">Answer these questions about Superman's story:</p>
+            <div id="quizQuestions" class="space-y-3">
+                <!-- Quiz will be loaded here -->
+            </div>
+            <button class="complete-btn" onclick="completeMission(4)">Complete Mission 4</button>
+        </div>
+
+        <!-- Mission 5: Personal Reflection -->
+        <div class="mission-card" id="mission5">
+            <div class="emoji-large text-center">🤔</div>
+            <h3 class="text-lg font-semibold mb-3 text-red-400">Mission 5: Life Reflection</h3>
+            <p class="mb-4">Think and write: "What event changed your life path?"</p>
+            <textarea class="w-full h-32 bg-black/50 border border-gray-600 rounded-lg p-3 text-white resize-none" 
+                      placeholder="Something happened that changed everything... I was... I decided... Now I..."></textarea>
+            <button class="complete-btn" onclick="completeMission(5)">Complete Mission 5</button>
+        </div>
+
+        <!-- Mission 6: Speaking Challenge -->
+        <div class="mission-card" id="mission6">
+            <div class="emoji-large text-center">💬</div>
+            <h3 class="text-lg font-semibold mb-3 text-red-400">Mission 6: Speaking Challenge</h3>
+            <p class="mb-4">Practice with a friend or family member:</p>
+            <div class="bg-black/30 rounded-lg p-4 text-sm">
+                <p class="mb-2"><strong>You:</strong> "Tell me about your childhood."</p>
+                <p class="mb-2"><strong>Partner:</strong> "I was... I lived... I went..."</p>
+                <p><strong>You:</strong> "What was your favorite memory?"</p>
+            </div>
+            <button class="complete-btn" onclick="completeMission(6)">Complete Mission 6</button>
+        </div>
+
+        <!-- Mission 7: Final Challenge -->
+        <div class="mission-card" id="mission7">
+            <div class="emoji-large text-center">🏆</div>
+            <h3 class="text-lg font-semibold mb-3 text-red-400">Mission 7: Hero's Journey</h3>
+            <p class="mb-4">Create your own "hero story" using 10 Simple Past verbs:</p>
+            <div class="grid grid-cols-2 gap-2 text-xs mb-4">
+                <span class="bg-red-900/30 px-2 py-1 rounded">was/were</span>
+                <span class="bg-red-900/30 px-2 py-1 rounded">went</span>
+                <span class="bg-red-900/30 px-2 py-1 rounded">met</span>
+                <span class="bg-red-900/30 px-2 py-1 rounded">learned</span>
+                <span class="bg-red-900/30 px-2 py-1 rounded">decided</span>
+                <span class="bg-red-900/30 px-2 py-1 rounded">helped</span>
+                <span class="bg-red-900/30 px-2 py-1 rounded">changed</span>
+                <span class="bg-red-900/30 px-2 py-1 rounded">became</span>
+                <span class="bg-red-900/30 px-2 py-1 rounded">saved</span>
+                <span class="bg-red-900/30 px-2 py-1 rounded">inspired</span>
+            </div>
+            <textarea class="w-full h-32 bg-black/50 border border-gray-600 rounded-lg p-3 text-white resize-none" 
+                      placeholder="Once upon a time, I was... I went... I met... I learned..."></textarea>
+            <button class="complete-btn" onclick="completeMission(7)">Complete Final Mission</button>
+        </div>
+
+        <!-- Completion Certificate -->
+        <div class="glass-mobile text-center hidden" id="certificate">
+            <div class="emoji-large">🏅</div>
+            <h2 class="text-2xl font-bold text-red-500 mb-4">MISSION COMPLETE!</h2>
+            <p class="text-lg mb-4">You've mastered Simple Past like Superman!</p>
+            <div class="netflix-red rounded-lg p-4 text-center">
+                <p class="font-bold">CERTIFICATE UNLOCKED</p>
+                <p class="text-sm mt-2">Superman & Lois Simple Past Master</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center p-6 text-gray-500 text-xs">
+            <p>WOLF<span class="text-red-500">FLIX</span> • Mobile Homework Experience</p>
+        </div>
+    </div>
+
+    <script>
+        let completedMissions = 0;
+        const totalMissions = 7;
+
+        // Quiz questions for Mission 4
+        const quizQuestions = [
+            { q: "Where did Superman grow up?", a: "Smallville" },
+            { q: "What was his human name?", a: "Clark Kent" },
+            { q: "Who did he marry?", a: "Lois Lane" }
+        ];
+
+        // Initialize homework
+        function initHomework() {
+            loadQuiz();
+            updateProgress();
+        }
+
+        // Load quiz questions
+        function loadQuiz() {
+            const container = document.getElementById('quizQuestions');
+            quizQuestions.forEach((item, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.innerHTML = `
+                    <div class="bg-black/30 rounded-lg p-3 mb-2">
+                        <p class="text-sm font-medium mb-2">${item.q}</p>
+                        <input type="text" class="w-full bg-black/50 border border-gray-600 rounded-lg p-2 text-white text-sm" 
+                               placeholder="Type your answer..." data-answer="${item.a.toLowerCase()}">
+                    </div>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        // Complete mission
+        function completeMission(missionNumber) {
+            const mission = document.getElementById(`mission${missionNumber}`);
+            const button = mission.querySelector('.complete-btn');
+            
+            // Special validation for Mission 4 (quiz)
+            if (missionNumber === 4) {
+                const inputs = mission.querySelectorAll('input');
+                let allCorrect = true;
+                
+                inputs.forEach(input => {
+                    const userAnswer = input.value.toLowerCase().trim();
+                    const correctAnswer = input.dataset.answer;
+                    
+                    if (userAnswer.includes(correctAnswer) || correctAnswer.includes(userAnswer)) {
+                        input.classList.add('border-green-500');
+                        input.classList.remove('border-red-500');
+                    } else {
+                        input.classList.add('border-red-500');
+                        input.classList.remove('border-green-500');
+                        allCorrect = false;
+                    }
+                });
+                
+                if (!allCorrect) {
+                    alert('Please check your answers and try again!');
+                    return;
+                }
+            }
+            
+            // Mark as completed
+            if (!button.classList.contains('completed')) {
+                completedMissions++;
+                button.classList.add('completed');
+                button.textContent = '✅ Mission Complete!';
+                mission.style.opacity = '0.7';
+                
+                updateProgress();
+                
+                // Show certificate if all missions completed
+                if (completedMissions === totalMissions) {
+                    setTimeout(() => {
+                        document.getElementById('certificate').classList.remove('hidden');
+                        document.getElementById('certificate').scrollIntoView({ behavior: 'smooth' });
+                    }, 500);
+                }
+            }
+        }
+
+        // Update progress
+        function updateProgress() {
+            const progressPercent = (completedMissions / totalMissions) * 100;
+            document.getElementById('completedMissions').textContent = `${completedMissions}/${totalMissions}`;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+        }
+
+        // Initialize on load
+        window.onload = initHomework;
+    </script>
+</body>
+</html>
